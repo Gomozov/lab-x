@@ -1,0 +1,113 @@
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+   var chart = new Highcharts.Chart({
+      chart: { renderTo: 'temperature', type: 'line' },
+        credits: { enabled: false},
+        title: { text: 'Temperature measurement history' },
+        xAxis: { type: 'datetime' },
+        yAxis: {
+          title: { text: 'Temperature C'}
+        },
+        series: [{
+        name: "Temperature A3",
+        //data: <%= @TemperatureA3.map(&:value) %>
+        data: <%= @TemperatureA3.map {|c| [c.created_at.utc.to_i*1000+14400000, c.value]} %>
+        },
+        {
+        name: "Temperature A4",
+        //data: <%= @TemperatureA4.map(&:value) %>
+        data: <%= @TemperatureA4.map {|c| [c.created_at.utc.to_i*1000+14400000, c.value]} %>
+        },
+        {
+        name: "Temperature D9",
+        //data: <%= @TemperatureD9.map(&:value) %>
+        data: <%= @TemperatureD9.map {|c| [c.created_at.utc.to_i*1000+14400000, c.value]} %>
+        },
+        {
+        name: "Temperature D10",
+        //data: <%= @TemperatureD10.map(&:value) %>
+        data: <%= @TemperatureD10.map {|c| [c.created_at.utc.to_i*1000+14400000, c.value]} %>
+        },
+        {
+        name: "Temperature R",
+        //data: <%= @TemperatureR.map(&:value) %>
+        data: <%= @TemperatureR.map {|c| [c.created_at.utc.to_i*1000+14400000, c.value]} %>
+        }]
+    });
+   var chart = new Highcharts.Chart({
+      chart: { renderTo: 'humidity', type: 'line' },
+        credits: { enabled: false},
+        title: { text: 'Humidity measurement history' },
+        xAxis: { type: 'datetime' },
+        yAxis: {
+          title: { text: 'Humidity %'}
+        },
+        series: [{
+        name: "Humidity A3",
+        //data: <%= @HumidityA3.map(&:value) %>
+        data: <%= @HumidityA3.map {|c| [c.created_at.utc.to_i*1000+14400000, c.value]} %>
+        },
+        {
+        name: "Hymidity A4",
+        //data: <%= @HumidityA4.map(&:value) %>
+        data: <%= @HumidityA4.map {|c| [c.created_at.utc.to_i*1000+14400000, c.value]} %>
+        }]
+    });
+   var chart = new Highcharts.Chart({
+      chart: { renderTo: 'light', type: 'line' },
+        credits: { enabled: false},
+        title: { text: 'Light measurement history' },
+        xAxis: { type: 'datetime' },
+        yAxis: { title: { text: 'Light'}  },
+        series: [{
+        name: "Light A0",
+        //data: <%= @LightA0.map(&:value) %>
+        data: <%= @LightA0.map {|c| [c.created_at.utc.to_i*1000+14400000, c.value]} %>
+        },
+        {                    
+        name: "Light A1",
+        //data: <%= @LightA1.map(&:value) %>
+        data: <%= @LightA1.map {|c| [c.created_at.utc.to_i*1000+14400000, c.value]} %>
+        },
+        {                    
+        name: "Light R",
+        //data: <%= @LightR.map(&:value) %>
+        data: <%= @LightR.map {|c| [c.created_at.utc.to_i*1000+14400000, c.value]} %>
+        }]
+    });
+   var chart = new Highcharts.Chart({
+      chart: { renderTo: 'pressure', type: 'line' },
+        credits: { enabled: false},
+        title: { text: 'Pressure measurement history' },
+        xAxis: { type: 'datetime' },
+        yAxis: {
+          title: { text: 'Pressure kPa'}
+        },
+        series: [{
+        name: "Pressure A5",
+        //data: <%= @PressureA5.map(&:value) %>
+        data: <%= @PressureA5.map {|c| [c.created_at.utc.to_i*1000+14400000, c.value]} %>
+        }]
+    });
+   var chart = new Highcharts.Chart({
+      chart: { renderTo: 'gas', type: 'line' },
+        credits: { enabled: false},
+        title: { text: 'Gas level measurement history' },
+        xAxis: { type: 'datetime' },
+        yAxis: {
+          title: { text: 'Gas level'}
+        },
+        series: [{
+        name: "Gas A2",
+       // data: <%= @GasA2.map(&:value) %>
+        data: <%= @GasA2.map {|c| [c.created_at.utc.to_i*1000+14400000, c.value]} %>
+        }]
+    });
+  });
+</script>
+
+       <div id="temperature" style="width: 100%; height: 450px;"></div>
+       <div id="humidity" style="width: 100%; height: 450px;"></div>
+       <div id="light" style="width: 100%; height: 450px;"></div>
+       <div id="pressure" style="width: 100%; height: 450px;"></div>
+       <div id="gas" style="width: 100%; height: 450px;"></div>

@@ -1,0 +1,32 @@
+<p style="font-size: 18px">Physical sensors condition:</p>
+<p style="font-size: 10px"><span class="muted pull-right"><%=link_to "history", sensors_path %></span></p>
+<table class="table">
+  <tr>
+    <td>Temperature D9:</td>
+    <td><%= @TemperatureD9.value %> &degC</td>
+  </tr>
+  <tr>
+    <td>Temperature D10:</td>
+    <td><%= @TemperatureD10.value %> &degC</td>
+  </tr>
+  <tr>
+    <td>Temperature A3:</td>
+    <td><%= @TemperatureA3.value %> &degC</td>
+  </tr>
+  <tr>
+    <td>Temperature A4:</td>
+    <td><%= @TemperatureA4.value %> &degC</td>
+  </tr>
+  <tr>
+    <td>Temperature R:</td>
+    <td><%= @TemperatureR.value %> &degC</td>
+  </tr>
+  <tr>
+    <td>Humidity A3:</td>
+    <td><%= @HumidityA3.value %> %</td>
+  </tr>
+  <tr>
+    <td>Humidity A4:</td>
+    <td><%= @HumidityA4.value %> %</td>
+  </tr>
+</table>
