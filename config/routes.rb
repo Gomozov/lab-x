@@ -1,7 +1,8 @@
 LabX::Application.routes.draw do
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
-  resources :sensors, :only => [:create, :index]
+  resources :sensors, :only => [:create, :index, :show]
+  resources :reports, :only => [:create]
 
   root :to => 'pages#home'
 

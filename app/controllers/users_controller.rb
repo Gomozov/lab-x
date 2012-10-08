@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_filter :login_required, :only => [:index, :edit, :update, :show, :destroy]
   before_filter :correct_user, :only => [:edit, :update]
   before_filter :admin_user, :only => :destroy          
+  respond_to :json, :html, :xml
 
   def new             
     @user = User.new  
@@ -27,6 +28,8 @@ class UsersController < ApplicationController
     @GasA2 = Sensor.where(:name => "Gas A2").last
     @LightR = Sensor.where(:name => "Light R").last
     @TemperatureR = Sensor.where(:name => "Temperature R").last
+    respond_with([@user, @TemperatureD9, @TemperatureD10, @TemperatureA3, @TemperatureA4, @TemperatureR, 
+                 @HumidityA3, @HumidityA4, @PressureA5, @GasA2, @LightR, @LightA0, @LightA1])
   end  
 
   def edit

@@ -49,26 +49,25 @@ window.onload = function(){
   }
 
 function updateData() {
-  var user_id = $('#sensors').attr('data-id')
   $.ajax({
-    url: "/users/"+user_id+".json",
+    url: "/sensors/1.json",
     dataType: "json",
     type: "GET",
     processData: false,
     contentType: "application/json",
     success: function(data) {
-    gauge1.draw(data[1].value);
-    gauge2.draw(data[2].value);
-    gauge3.draw(data[3].value);
-    gauge4.draw(data[4].value);
-    gauge5.draw(data[5].value);
-    gauge6.draw(data[6].value);
-    gauge7.draw(data[7].value);
-    gauge8.draw(data[8].value);
-    gauge9.draw(data[11].value);
-    gauge10.draw(data[12].value);
-    gauge11.draw(data[10].value);
-    gauge12.draw(data[9].value);
+    gauge1.draw(data[0].value);
+    gauge2.draw(data[1].value);
+    gauge3.draw(data[2].value);
+    gauge4.draw(data[3].value);
+    gauge5.draw(data[4].value);
+    gauge6.draw(data[5].value);
+    gauge7.draw(data[6].value);
+    gauge8.draw(data[7].value);
+    gauge9.draw(data[10].value);
+    gauge10.draw(data[11].value);
+    gauge11.draw(data[9].value);
+    gauge12.draw(data[8].value);
                           }
     });
   setTimeout(updateData, 10000);
@@ -77,7 +76,7 @@ function updateData() {
 </script>
 
 <div class="row">
-  <div class="span9" id="sensors" data-id="<%= @user.id %>">
+  <div class="span9" id="sensors">
     <legend>Temperature</legend>
     <canvas id="canvas" width="110" height="110"></canvas>
     <canvas id="canvas2" width="110" height="110"></canvas>
@@ -109,8 +108,6 @@ function updateData() {
     </div>
   </div>
   <div class="span3">
-    <%= render 'layouts/user_info' %>
-    <br/>
     <%= render 'layouts/fhysical' %>
   </div>
 </div>

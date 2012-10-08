@@ -10,6 +10,8 @@
 #  avatar          :string(255)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  pass            :integer
+#  key             :string(255)
 #
 
 require 'test_helper'

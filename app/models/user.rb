@@ -10,6 +10,8 @@
 #  avatar          :string(255)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  pass            :integer
+#  key             :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -23,6 +25,7 @@ class User < ActiveRecord::Base
                     :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
                                                    
   has_secure_password                              
+  has_many :reports
   validates_presence_of :password
 
 end

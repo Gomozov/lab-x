@@ -33,7 +33,7 @@
 this.init = function () {
       this.ctx.clearRect(0, 0,this.W, this.H);
       this.ctx.beginPath();
-      this.ctx.strokeStyle = "#e1e1e1";// this.bgcolor;
+      this.ctx.strokeStyle = "#e3e3e3";
       this.ctx.lineWidth = 12;
       this.ctx.arc(this.W/2, this.H/2, 38, 0, Math.PI*2, false); 
       this.ctx.stroke();
@@ -44,8 +44,7 @@ this.init = function () {
       this.ctx.arc(this.W/2, this.H/2, 38, 0 - 90*Math.PI/180, radians - 90*Math.PI/180, false); 
       this.ctx.stroke();
       this.ctx.fillStyle = this.color;
-      this.ctx.font = "28px bebas";
-      this.text = Math.round(this.degrees/360*this.maxvalue)+this.symbol;
+      this.ctx.font = "28px bebas";  //this.text = Math.round(this.degrees/360*this.maxvalue)+this.symbol;
       text_width = this.ctx.measureText(this.text).width;
       this.ctx.fillText(this.text, this.W/2 - text_width/2, this.H/2 + 10);
       this.ctx.font = "12px bebas";
@@ -54,20 +53,27 @@ this.init = function () {
 }
 
 this.draw = function (temp) {
+  console.info("draw");
+  this.text = temp+this.symbol;
   if(this.animation_loop != 0) clearInterval(this.animation_loop);
   if(temp < this.minvalue) this.new_degrees = 0;
   if(temp > this.maxvalue) this.new_degrees = 360;
   if(temp < this.maxvalue && temp > this.minvalue) this.new_degrees = Math.round(360*temp/(this.maxvalue - this.minvalue));
   this.difference = this.new_degrees - this.degrees;
+  console.info(this.difference);
+  console.info(this.degrees);
+  console.info(this.new_degrees);
   this.animation_loop = setInterval((function(self){return function() {self.animate();}})(this), 1000/this.difference);
 }
 
 this.animate = function () {
-    if(this.degrees == this.new_degrees) clearInterval(this.animation_loop);
-    if(this.degrees < this.new_degrees)
-      this.degrees++;
-    else
-      this.degrees--;
-    this.init();
+    if(this.degrees == this.new_degrees) 
+      clearInterval(this.animation_loop);
+    else { if(this.degrees < this.new_degrees)
+            this.degrees++;
+           else
+            this.degrees--;
+           this.init();
+         }
 }
 }

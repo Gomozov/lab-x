@@ -10,22 +10,18 @@
         },
         series: [{
         name: "Temperature A3",
-        //data: <%= @TemperatureA3.map(&:value) %>
         data: <%= @TemperatureA3.map {|c| [c.created_at.utc.to_i*1000+14400000, c.value]} %>
         },
         {
         name: "Temperature A4",
-        //data: <%= @TemperatureA4.map(&:value) %>
         data: <%= @TemperatureA4.map {|c| [c.created_at.utc.to_i*1000+14400000, c.value]} %>
         },
         {
         name: "Temperature D9",
-        //data: <%= @TemperatureD9.map(&:value) %>
         data: <%= @TemperatureD9.map {|c| [c.created_at.utc.to_i*1000+14400000, c.value]} %>
         },
         {
         name: "Temperature D10",
-        //data: <%= @TemperatureD10.map(&:value) %>
         data: <%= @TemperatureD10.map {|c| [c.created_at.utc.to_i*1000+14400000, c.value]} %>
         },
         {
@@ -44,12 +40,10 @@
         },
         series: [{
         name: "Humidity A3",
-        //data: <%= @HumidityA3.map(&:value) %>
         data: <%= @HumidityA3.map {|c| [c.created_at.utc.to_i*1000+14400000, c.value]} %>
         },
         {
         name: "Hymidity A4",
-        //data: <%= @HumidityA4.map(&:value) %>
         data: <%= @HumidityA4.map {|c| [c.created_at.utc.to_i*1000+14400000, c.value]} %>
         }]
     });
@@ -61,17 +55,14 @@
         yAxis: { title: { text: 'Light'}  },
         series: [{
         name: "Light A0",
-        //data: <%= @LightA0.map(&:value) %>
         data: <%= @LightA0.map {|c| [c.created_at.utc.to_i*1000+14400000, c.value]} %>
         },
         {                    
         name: "Light A1",
-        //data: <%= @LightA1.map(&:value) %>
         data: <%= @LightA1.map {|c| [c.created_at.utc.to_i*1000+14400000, c.value]} %>
         },
         {                    
         name: "Light R",
-        //data: <%= @LightR.map(&:value) %>
         data: <%= @LightR.map {|c| [c.created_at.utc.to_i*1000+14400000, c.value]} %>
         }]
     });
@@ -85,7 +76,6 @@
         },
         series: [{
         name: "Pressure A5",
-        //data: <%= @PressureA5.map(&:value) %>
         data: <%= @PressureA5.map {|c| [c.created_at.utc.to_i*1000+14400000, c.value]} %>
         }]
     });
@@ -99,15 +89,32 @@
         },
         series: [{
         name: "Gas A2",
-       // data: <%= @GasA2.map(&:value) %>
         data: <%= @GasA2.map {|c| [c.created_at.utc.to_i*1000+14400000, c.value]} %>
         }]
     });
   });
 </script>
-
-       <div id="temperature" style="width: 100%; height: 450px;"></div>
-       <div id="humidity" style="width: 100%; height: 450px;"></div>
-       <div id="light" style="width: 100%; height: 450px;"></div>
-       <div id="pressure" style="width: 100%; height: 450px;"></div>
-       <div id="gas" style="width: 100%; height: 450px;"></div>
+<ul id="myTab" class="nav nav-tabs">
+  <li class="active"><a href="#temperature1" data-toggle="tab">Temperature</a></li>
+  <li><a href="#humidity1" data-toggle="tab">Humidity</a></li>
+  <li><a href="#light1" data-toggle="tab">Light</a></li>
+  <li><a href="#pressure1" data-toggle="tab">Pressure</a></li>
+  <li><a href="#gas1" data-toggle="tab">Gas</a></li>
+</ul>
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane fade in active" id="temperature1">
+    <div id="temperature" style="width: 1170px; height: 450px;"></div>
+  </div>
+  <div class="tab-pane fade" id="humidity1">
+    <div id="humidity" style="width: 1170px; height: 450px;"></div>
+  </div>
+  <div class="tab-pane fade" id="light1">
+    <div id="light" style="width: 1170px; height: 450px;"></div>
+  </div>
+  <div class="tab-pane fade" id="pressure1">
+    <div id="pressure" style="width: 1170px; height: 450px;"></div>
+  </div>
+  <div class="tab-pane fade" id="gas1" style="width: 100%; height: 450px;">
+    <div id="gas" style="width: 1170px; height: 450px;"></div>
+  </div>
+</div>
