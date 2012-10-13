@@ -1,116 +1,15 @@
-<script type="text/javascript" charset="utf-8">
-    var gauge1;
-    var gauge2;
-    var gauge3;
-    var gauge4;
-    var gauge5;
-    var gauge6;
-    var gauge7;
-
-window.onload = function(){
-
-    var canvas = document.getElementById("canvas");     
-    gauge1 = new CGauge(canvas, "darkturquoise", 50, "D9", "C");
-    gauge1.draw(<%= @TemperatureD9.value %>);
-    canvas = document.getElementById("canvas2");     
-    gauge2 = new CGauge(canvas, "darkturquoise", 50, "D10", "C");
-    gauge2.draw(<%= @TemperatureD10.value %>);
-    canvas = document.getElementById("canvas3");     
-    gauge3 = new CGauge(canvas, "darkturquoise", 50, "A3", "C");
-    gauge3.draw(<%= @TemperatureA3.value %>);
-    canvas = document.getElementById("canvas4");     
-    gauge4 = new CGauge(canvas, "darkturquoise", 50, "A4", "C");
-    gauge4.draw(<%= @TemperatureA4.value %>);
-    canvas = document.getElementById("canvas5");     
-    gauge5 = new CGauge(canvas, "darkturquoise", 50, "R", "C");
-    gauge5.draw(<%= @TemperatureR.value %>);
-    canvas = document.getElementById("canvas6");     
-    gauge6 = new CGauge(canvas, "deepskyblue", 100, "A3", "%");
-    gauge6.draw(<%= @HumidityA3.value %>);
-    canvas = document.getElementById("canvas7");
-    gauge7 = new CGauge(canvas, "deepskyblue", 100, "A4", "%");
-    gauge7.draw(<%= @HumidityA4.value %>);
-    canvas = document.getElementById("canvas8");
-    gauge8 = new CGauge(canvas, "darkmagenta", 1500, "A5", "");
-    gauge8.draw(<%= @PressureA5.value %>);
-    canvas = document.getElementById("canvas9");
-    gauge9 = new CGauge(canvas, "goldenrod", 1024, "A0", "");
-    gauge9.draw(<%= @LightA0.value %>);
-    canvas = document.getElementById("canvas10");
-    gauge10 = new CGauge(canvas, "goldenrod", 1024, "A1", "");
-    gauge10.draw(<%= @LightA1.value %>);
-    canvas = document.getElementById("canvas11");
-    gauge11 = new CGauge(canvas, "goldenrod", 1024, "R", "");
-    gauge11.draw(<%= @LightR.value %>);
-    canvas = document.getElementById("canvas12");
-    gauge12 = new CGauge(canvas, "salmon", 1024, "A2", "");
-    gauge12.draw(<%= @GasA2.value %>);
-    setTimeout(updateData, 10000);
-  }
-
-function updateData() {
-  var user_id = $('#sensors').attr('data-id')
-  $.ajax({
-    url: "/users/"+user_id+".json",
-    dataType: "json",
-    type: "GET",
-    processData: false,
-    contentType: "application/json",
-    success: function(data) {
-    gauge1.draw(data[1].value);
-    gauge2.draw(data[2].value);
-    gauge3.draw(data[3].value);
-    gauge4.draw(data[4].value);
-    gauge5.draw(data[5].value);
-    gauge6.draw(data[6].value);
-    gauge7.draw(data[7].value);
-    gauge8.draw(data[8].value);
-    gauge9.draw(data[11].value);
-    gauge10.draw(data[12].value);
-    gauge11.draw(data[10].value);
-    gauge12.draw(data[9].value);
-                          }
-    });
-  setTimeout(updateData, 10000);
-}
-
-</script>
-
 <div class="row">
-  <div class="span9" id="sensors" data-id="<%= @user.id %>">
-    <legend>Temperature</legend>
-    <canvas id="canvas" width="110" height="110"></canvas>
-    <canvas id="canvas2" width="110" height="110"></canvas>
-    <canvas id="canvas3" width="110" height="110"></canvas>
-    <canvas id="canvas4" width="110" height="110"></canvas>
-    <canvas id="canvas5" width="110" height="110"></canvas>
-    <div class="row">
-      <div class="span5">
-        <legend>Humidity</legend>
-        <canvas id="canvas6" width="110" height="110"></canvas>
-        <canvas id="canvas7" width="110" height="110"></canvas>
-      </div>
-      <div class="span4">
-        <legend>Pressure</legend>
-        <canvas id="canvas8" width="110" height="110"></canvas>
-      </div>
-    </div>
-    <div class="row">
-      <div class="span5">
-        <legend>Light</legend>
-        <canvas id="canvas9" width="110" height="110"></canvas>
-        <canvas id="canvas10" width="110" height="110"></canvas>
-        <canvas id="canvas11" width="110" height="110"></canvas>
-      </div>
-      <div class="span4">
-        <legend>Gas</legend>
-        <canvas id="canvas12" width="110" height="110"></canvas>
-      </div>
-    </div>
+  <div class="span2 offset4">
+    <legend>User entry:</legend>
+          <table class="table" id="reports" >
+            <tbody>
+              <%= render @reports.find(:all, :conditions => [" created_at between ? AND ?", Time.now.beginning_of_day, Time.now.end_of_day]) %>
+            </tbody>  
+          </table>
   </div>
   <div class="span3">
-    <%= render 'layouts/user_info' %>
-    <br/>
-    <%= render 'layouts/fhysical' %>
+  </div>
+  <div class="span3" id="info">
+    <%= render 'user_info' %>
   </div>
 </div>

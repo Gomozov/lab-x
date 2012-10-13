@@ -28,4 +28,8 @@ class User < ActiveRecord::Base
   has_many :reports
   validates_presence_of :password
 
+  def find_by_key (key)
+    User.find_by_key(key)
+  end
+
 end

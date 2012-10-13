@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="span6">
+  <div class="span8">
 <legend>List of users</legend>
 <table class="table table-striped">
   <thead>
@@ -8,6 +8,8 @@
       <th style="width: 65px"><i class= "icon-picture"></i> Avatar</th>
       <th><i class= "icon-user"></i> Username</th>
       <th><i class= "icon-envelope"></i> Email adress</th>
+      <th><i class= "icon-tag"></i> Pass</th>
+      <th><i class= "icon-barcode"></i> Key</th>
       <% if current_user.admin? %>
         <th><i class= "icon-trash"></i> Delete user</th>
       <% end %>
@@ -16,14 +18,16 @@
   <tbody>  
   <% @users.each do |user| %>
     <tr>
-       <th><%= user.id %></th>
-       <th><% if user.avatar? %>
+       <td><%= user.id %></td>
+       <td><% if user.avatar? %>
              <%= image_tag user.avatar_url(:thumb).to_s, :class => "img-circle" %>
            <% else %>
              <%= image_tag('default 24.png', :class => "img-circle") %>
-           <% end %></th>
-       <th><%= link_to user.name, user %></th>
-       <th><%= user.email %></th>
+           <% end %></td>
+       <td><%= link_to user.name, user %></td>
+       <td><%= user.email %></td>
+       <td><%= user.pass %></td>
+       <td><%= user.key %></td>
        <% if current_user.admin? && user !=current_user %>
          <th><%= link_to "delete", user, :method => :delete, :confirm => "You sure?",
                                          :title => "Delete #{user.name}" %></th>

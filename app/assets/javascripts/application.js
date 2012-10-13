@@ -77,3 +77,23 @@ this.animate = function () {
          }
 }
 }
+
+$(function () {
+  if ($('#reports').length > 0) {
+    setTimeout(updateComments, 10000);
+                                }
+});
+
+function updateComments() {
+  if ($('.report').length < 20) {
+    if ($('.report').length > 0) {
+      var after = $('.report:last').attr('data-time');
+                                 }
+    else {
+      var currentTime = new Date();
+      var after = currentTime.getTime()/1000 - currentTime.getHours()*3600;
+         }
+    $.getScript('/users/1.js?after=' + after);
+                                }
+    setTimeout(updateComments, 10000);
+}
