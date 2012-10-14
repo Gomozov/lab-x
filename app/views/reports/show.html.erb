@@ -1,0 +1,20 @@
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+   var chart = new Highcharts.Chart({
+      chart: { renderTo: 'all', type: 'column' },
+        credits: { enabled: false},
+        title: { text: 'Reports history for: '+"<%=@user.name%>" },
+        subtitle: { text: 'by last month'},
+        xAxis: {type: 'datetime'},
+        yAxis: {
+          min: 0,
+          title: { text: 'Hits'}
+        },
+        series: [{
+        name: "Hits",
+        data: <%= @counts.to_a %>
+        }]
+    });
+  });
+</script>
+<div id="all" style="width: 1170px; height: 450px;"></div>

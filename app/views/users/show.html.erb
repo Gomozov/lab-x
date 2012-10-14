@@ -1,13 +1,14 @@
 <div class="row">
-  <div class="span2 offset4">
+  <div class="span4 offset3">
     <legend>User entry:</legend>
-          <table class="table" id="reports" >
+    <p style="font-size: 10px"><span class="muted pull-right"><%=link_to "history", report_path(@user) %></span></p>
+    <table class="table" id="reports" data-id="<%= @user.id %>" >
             <tbody>
               <%= render @reports.find(:all, :conditions => [" created_at between ? AND ?", Time.now.beginning_of_day, Time.now.end_of_day]) %>
             </tbody>  
           </table>
   </div>
-  <div class="span3">
+  <div class="span2">
   </div>
   <div class="span3" id="info">
     <%= render 'user_info' %>

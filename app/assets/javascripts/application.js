@@ -93,7 +93,12 @@ function updateComments() {
       var currentTime = new Date();
       var after = currentTime.getTime()/1000 - currentTime.getHours()*3600;
          }
-    $.getScript('/users/1.js?after=' + after);
+    var user_id = $('#reports').attr('data-id')
+    $.getScript('/users/'+user_id+'.js?after=' + after);
                                 }
     setTimeout(updateComments, 10000);
 }
+
+$(document).ready(function() {
+  $('.dropdown-toggle').dropdown()
+});
